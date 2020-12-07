@@ -63,12 +63,13 @@ public class Jt808Client {
             workerGroup.shutdownGracefully();
         }
     }
-
+    //发送鉴权码
     public static void sendAuthMessage(ChannelFuture f) {
         ClientAuthMsg authMsg =ClientAuthMsg.zipClientAuthMsg((short) 1,"13002447017");
         authMsg.setAuthCode("asdf");
         f.channel().writeAndFlush(authMsg);
     }
+    //发送位置上报测试报文
     public static void sendLocationMessage(ChannelFuture f) {
         byte[]  req = ByteBufUtil.decodeHexDump("7e02000042019830027084014b000000000000000201dd1a6a0732396000000000014a190516033245010400000000eb1e000c00b2898607b40318c176948300060089ffffffff000600c5ffffffffa77e");
         ByteBuf firstMsg = Unpooled.buffer(req.length);
